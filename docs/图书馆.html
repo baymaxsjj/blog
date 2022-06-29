@@ -121,8 +121,8 @@
     <div class="header">
         <p class="title">巢湖市图书馆</p>
         <div class="date-wrap">
-            <p class="date-time">08:00 - 12:00</p>
-            <p id="date" class="date">2022-06-29</p>
+            <p id="dateTime" class="date-time">08:00 - 12:00</p>
+            <p id="date" class="date">2022-06-31</p>
         </div>
         <p class="name">齐卫登</p>
         <div class="round round-1"></div>
@@ -143,8 +143,14 @@
     <script>
         const date= document.getElementById("date");
         const currTime= document.getElementById("currTime");
+        const dateTime= document.getElementById("dateTime");
         const dateInfo=getDate();
         date.innerText=`${dateInfo.year}-${dateInfo.month}-${dateInfo.dates}`
+        if(DayStr()){
+            dateTime.innerText="08:00 - 12:00"
+        }else{
+            dateTime.innerText="14:00 - 18:00"
+        }
         setInterval(()=>{
             currTime.innerText=getCurrentDate()
         },1000)
@@ -178,6 +184,17 @@
             second = second > 9 ? second : '0' + second.toString()
             return `${hour}:${minute}:${second}`
       }
+      function DayStr(){
+        let date=new Date();
+        　　if(date.getHours()>=0&&date.getHours()<12){
+        　　　　return true
+        　　}else if(date.getHours()>=12&&date.getHours()<18){
+        　　　　return false
+        　　}else{
+            　　return false
+        }
+
+    }
 
     </script>
 
