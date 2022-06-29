@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>签到成功</title>
+    <style>
+        body{
+            padding: 0 15px;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            font-family: "微软雅黑";
+        }
+        .header{
+            border-radius: 5px;
+            position: relative;
+            height: 200px;
+            background-color: #08AEEA;
+            background-image: linear-gradient(90deg, rgba(119,215,193,95%) 0%, rgba(63,199,125,95%) 100%);
+            color: #fff;
+            margin-top: 15px;
+            overflow: hidden;
+        }
+        .header p{
+            margin: 0px;
+        }
+        .header .title{
+            position: absolute;
+            top: 15px;
+            left: 15px;
+        }
+        .header .name{
+            position: absolute;
+            bottom: 15px;
+            right: 15px;
+        }
+        .header .date-wrap{
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-50%);
+            text-align: center;
+            width: 100%;
+        }
+        .round{
+            position: absolute;
+            height: 200px;
+            width: 200px;
+            background-image: linear-gradient(0deg, rgba(255,255,255,0%) 0%, rgba(255,255,255,20%) 100%);
+            border-radius: 50%;
+        }
+        .round-1{
+            left: -100px;
+            top:40px;
+            transform: rotate(180deg);
+        }
+        .round-2{
+            right: 0;
+            bottom:-100px;
+            transform: rotate(90deg);
+
+        }
+        .round-3{
+            right: -110px;
+            bottom:-110px;
+            transform: rotate(90deg);
+
+        }
+        .date-wrap .date-time{
+            font-size: 30px;
+            margin-top: 30px;
+        }
+        .date-wrap .date{
+            font-size: 14px;
+            opacity: .8;
+            margin-top: 15px;
+        }
+        .body{
+            text-align: center;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .body p{
+            margin:0px;
+        }
+        .body .success{
+            margin-top: 30px;
+            font-size: 40px;
+            color: rgb(60,60,60);
+        }
+        .body .current-time{
+            font-size: 70px;
+            margin-top: 30px;
+            color: rgb(111,215,146);
+            margin-bottom: 60px;
+        }
+        .body .success-img{
+            width: 90px;
+            height: 90px;
+            margin: 0px auto;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAABYBJREFUeF7tm2tsFFUUx/9ndmuCtMRg1WiBaixhpxVDfNQX+sHEBBLFxBhjMBIVFUPZma0mBD6ofMAIYtqd2fpAimnV4BMSg4naxChNCSgYImUfDSQgRCwkUCRgLe3OMdNSKHW6c+ex05XtfmnSe+455/+buffO3DmXUOQ/KnL9mAAwcQcERCCWarzekKSIlKVKDuEaMEqJKGSw0S8x/WWAu4n5YD9Kku/W1J0JKK38DYFXutaX9/O5R4j5ITDmgjBdVBQDnQRsM7JoS9yibBXt58bO9zlATcYXMNFzRPSom4Qs+vQy8CGHsTExU9njk88LbnwDoKa1hQC9BmCW30mO8LeFkH07Ltfv8CuGZwDRlH63RHgDwIN+JWXnh8EfhIzsysaal0/a2dq1ewKgpBOvE3iVXZA8tXezwapeo37hxb8rAPVHmqcaZ862AvSwl+D+9OU1mqyudOvLMYBoUq+WJGoDuMJtUP/70SZNjj7lxq8jALFk4xyWwt8Ulvgh2QRsjcvKAqcQhAHUJxuqDKnkp0IUf1E0bdbk6ONOIAgBWJVcdUWPNHU7gDucOB8PWwbe0WVlmWhsIQCxjP4RM54WdTredkRYGo8o74nkYQtAyWgvEZOQM5GAQdlkQbc2ydFOu3g5AdR3NVQY2XAXCJPtHBVg+3earMy3yysnADWlNYNosZ2TQm0niRfFZ6kf58pvTACxVNNtTMavhSpOKC/mtFatVrsCoKb1VgCLhAIVsBEBz8ZlpWWsFC3vgOh+fZo0gCMFrMtJajs0WbnXEQAlnVhB4DedRCloW8mo1WbFdlnlaHkHqGl9N4DbC0FU1ZUVmFoyBYd6/8Txc6fcpURYq0WUFUIAop36zVIYB9xF8rfXvPJazCu/a9CpKX7dwU/RzwNuguzTZGW2EAA1k1gM5mY3UfzsM1L8sN+3Dm7C0b4TrsKwYVTqNbHDozv/ZwgoKX0DEZ53FcWnTlbiD/9zDA2HPOx9ED2hRaJf2gKIZfSfmVHrkxbHbqzEd/edRMvRb2H+df1jrNaqlVdtAagpvQeEq1wH8tAxb+LNnAifaxHlyZwAlmfWlvXxpNMeNLjumlfxQwA6tIhyf04AdammyjAZh9yqmBKejMeuewBzyqrQ3vMbthxrF3KVd/FDO0a/x2XlxpwAlu1NREIlnBbK2sKopvQmvDDt4j7p7tNd+ORoW053QYgfugFEAHQlIiHDPQB5ciWWTL90W27nqRQ+6/7BEkJQ4oUBeB0CZqBnKuYPDoGRv46evfjq2LZL/hekeGEAyzMby/r4rOdJ0ArCjyf34OvjHYMQghZ/nvx2TVbmBrYMWkFoO7ELBhsXHm+Hk/FlnbebuESWQdOHmtZ+AehOO38i7VYQRvcLRPzQGFitRQQehGIZfQOzf4/CuSAEJn4QgOCjcD5ehqwgBCoegPDLUL5eh0dCCFo8APHX4aF5ID8bIubymGUDB/7+A71Gn8g04o+Nkw0RM2LRb4kV/abo4DBI6a2gIt0WNwEU/YeRQQg+PxP4M6OJe/H0acwMsyyTuCHE3AWgVDxswVh6/zh6fklcAuD9gpElmAgzz9ar1X125rb1AeeHQvEWSJgAXuT1JZMyfWaJjC8vSXZXxUt7XkpkzISWJhuqSgq+SIo3a7Lqf5HU8BUp6jK5YQjR/Xq1NFCkhZLDEOrSTVeHwS0Aj3+prMFrtJoAS2VHTlDjWSzNQDcRKVbf+5xMokLLYC6HsXTjPUyh1eAiLJcfCUZNJxYCnPcDE6Ew1jXMVHY6ucq5bD3fAaOdF+2RmdEgLjk0BdwHYIboVTMPTYG5nYm+T8j/s0NTY4kcPjYX4tAMg41rQZf5sTnRqz3edr7PAeMtyGn8CQBOiV1u9v8CDMKAX45jNKMAAAAASUVORK5CYII=);
+            background-size: cover;
+        }
+        .footer{
+            padding: 10px 0;
+            border: 1px solid  rgb(95,104,235);
+            color: rgb(95,104,235);
+            border-radius: 5px;
+            text-align: center;
+            margin: 0;
+            margin-bottom: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <p class="title">巢湖市图书馆</p>
+        <div class="date-wrap">
+            <p class="date-time">08:00 - 12:00</p>
+            <p id="date" class="date">2022-06-29</p>
+        </div>
+        <p class="name">齐卫登</p>
+        <div class="round round-1"></div>
+        <div class="round round-2"></div>
+        <div class="round round-3"></div>
+    </div>
+    <div class="body">
+        <div class="success-img">
+            
+
+        </div>
+        <p class="success">签到成功</p>
+        <p id="currTime" class="current-time">09:58:39</p>
+    </div>
+    <p class="footer">
+        我知道了
+    </p>
+    <script>
+        const date= document.getElementById("date");
+        const currTime= document.getElementById("currTime");
+        const dateInfo=getDate();
+        date.innerText=`${dateInfo.year}-${dateInfo.month}-${dateInfo.dates}`
+        setInterval(()=>{
+            currTime.innerText=getCurrentDate()
+        },1000)
+        function getDate(){
+            var date = new Date();
+            var year = date.getFullYear();    //  返回的是年份
+            var month = date.getMonth() + 1;  //  返回的月份上个月的月份，记得+1才是当月
+            var dates = date.getDate();       //  返回的是几号
+            if(month<10){
+                month="0"+month
+            }
+            if(dates<10){
+                dates="0"+dates
+            }
+            return {
+                year ,month ,dates
+            }
+        }
+        function getCurrentDate() {
+            var d = new Date()
+            var year = d.getFullYear()
+            var month = d.getMonth()
+            month = month + 1 > 12 ? 1 : month + 1
+            month = month > 9 ? month : '0' + month.toString()
+            var day = d.getDate()
+            var hour = d.getHours()
+            hour = hour > 9 ? hour : '0' + hour.toString()
+            var minute = d.getMinutes()
+            minute = minute > 9 ? minute : '0' + minute.toString()
+            var second = d.getSeconds()
+            second = second > 9 ? second : '0' + second.toString()
+            return `${hour}:${minute}:${second}`
+      }
+
+    </script>
+
+</body>
+</html>
